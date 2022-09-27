@@ -12,10 +12,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('login', [LoginController::class, 'borangLogin']);
 Route::post('login', [LoginController::class, 'terimaData']);
-
 
 Route::get('register', [RegisterController::class, 'borangRegister']);
 Route::post('register', [RegisterController::class, 'terimaData']);
@@ -23,8 +21,6 @@ Route::post('register', [RegisterController::class, 'terimaData']);
 Route::get('password-reset', fn () => view('authentication.template-password-reset'));
 
 Route::get('dashboard', DashboardController::class);
-
-
 
 Route::get('pesakit', [PesakitController::class, 'index']);
 Route::get('pesakit/daftar', [PesakitController::class, 'create']);

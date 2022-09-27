@@ -51,7 +51,7 @@ Route::get('pesakit', function() {
 });
 
 Route::get('pesakit/daftar', function() {
-    return view('pesakit.template-daftar');
+    return view('folder-pesakit.template-daftar');
 });
 
 Route::get('laporan/pesakit-dalam', function () {

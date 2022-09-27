@@ -17,9 +17,10 @@ Route::get('dashboard', function () {
 
 Route::get('pesakit', function() {
 
-    $title = 'Halaman Senarai Pesakit';
+    $title = '<strong><u>Halaman Senarai Pesakit</u></strong>';
     $tarikhToday = date('d-m-Y');
-
+    $number = 5;
+    //
     $senaraiPesakit = [
         ['id' => 1, 'nama' => 'Ali Bin Abu', 'nokp' => '808080808080'],
         ['id' => 2, 'nama' => 'Ahmad Bin Abu', 'nokp' => '7070707070770'],
@@ -46,7 +47,7 @@ Route::get('pesakit', function() {
     //     'tarikhHariIni' => $tarikhToday
     // ]);
     //Cara 3 Pass Data Kepada Template
-    return view('pesakit.template-index', compact('senaraiPesakit', 'title', 'tarikhToday'));
+    return view('folder-pesakit.template-index', compact('number', 'senaraiPesakit', 'title', 'tarikhToday'));
 });
 
 Route::get('pesakit/daftar', function() {

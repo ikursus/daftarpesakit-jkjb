@@ -43,6 +43,8 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
+                @includeIf('layouts.alerts')
+
                 @yield('content')
                 <!-- End of Main Content -->
 

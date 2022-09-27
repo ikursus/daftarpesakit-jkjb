@@ -31,6 +31,11 @@
                             <td>{{ $pesakit['id'] }}</td>
                             <td>{{ $pesakit['nama'] }}</td>
                             <td>{{ $pesakit['nokp'] }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="/pesakit/{{ $pesakit['id'] }}">SHOW</a>
+                                <a class="btn btn-info" href="/pesakit/{{ $pesakit['id'] }}/edit">EDIT</a>
+                                <a class="btn btn-danger" href="/pesakit/{{ $pesakit['id'] }}/delete">DELETE</a>
+                            </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -34,7 +34,6 @@ Route::get('pesakit/{id}/delete', [PesakitController::class, 'destroy']);
 // turut menggunakan method resource iaitu (index, create, store, show, edit, update, destroy)
 // Route::resource('pesakit', PesakitController::class);
 
-
 Route::get('laporan/pesakit-dalam', function () {
     return view('laporan.pesakit-dalam');
 });

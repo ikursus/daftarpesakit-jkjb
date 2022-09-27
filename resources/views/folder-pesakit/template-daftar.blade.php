@@ -22,8 +22,8 @@
                 <div class="card-body">
 
 
-                    <form>
-
+                    <form method="POST">
+                        @csrf
                         <div class="form-group">
                           <label for="exampleInputEmail1">NAMA PESAKIT</label>
                           <input type="text" class="form-control" name="nama_pesakit">

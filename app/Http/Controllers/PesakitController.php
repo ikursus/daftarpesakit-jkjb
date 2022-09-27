@@ -64,7 +64,14 @@ class PesakitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Die and Dump
+        // $data = $request->all();
+        // $data = $request->input('nama_pesakit');
+        // $data = $request->nama_pesakit;
+        // $data = $request->except('nama_pesakit');
+        $data = $request->only(['nama_pesakit', 'no_kp']);
+
+        dd($data);
     }
 
     /**

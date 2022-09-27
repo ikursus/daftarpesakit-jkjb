@@ -17,7 +17,7 @@ Route::get('dashboard', function () {
 
 Route::get('pesakit', function() {
 
-    $title = '<strong><u>Halaman Senarai Pesakit</u></strong>';
+    $title = 'Senarai Pesakit';
     $tarikhToday = date('d-m-Y');
     $number = 5;
     //

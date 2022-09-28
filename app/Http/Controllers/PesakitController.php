@@ -71,6 +71,15 @@ class PesakitController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        // Die and Dump
+        // $data = $request->all();
+        // $data = $request->input('nama_pesakit');
+        // $data = $request->nama_pesakit;
+        // $data = $request->except('nama_pesakit');
+        // $data = $request->only(['nama_pesakit', 'no_kp']);
+
         // Kod asas untuk validation
         $data = $request->validate([
             'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
@@ -80,12 +89,18 @@ class PesakitController extends Controller
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);
 
-        // Die and Dump
-        // $data = $request->all();
-        // $data = $request->input('nama_pesakit');
-        // $data = $request->nama_pesakit;
-        // $data = $request->except('nama_pesakit');
-        // $data = $request->only(['nama_pesakit', 'no_kp']);
+        // Attach data untuk column created_at kepada variable $data diatas
+        $data['created_at'] = now(); // Carbon\Carbon::now();
+
+        // Jika nama field tidak sama dengan nama column dalam table,
+        // perlu kena declare nama field dan nama column yang berkaitan
+        // $data = [
+        //     'nama_pesakit' => $request->input('nama_pesakit'),
+        //     'no_kp' => $request->input('no_kp'),
+        //     'jantina' => $request->input('jantina'),
+        //     'alamat' => $request->input('alamat'),
+        //     'tarikh_lahir' => $request->input('tarikh_lahir'),
+        // ];
 
         DB::table('pesakit')->insert($data);
 

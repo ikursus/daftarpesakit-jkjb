@@ -72,22 +72,24 @@ class PesakitController extends Controller
     public function store(Request $request)
     {
         // Kod asas untuk validation
-        $request->validate([
+        $data = $request->validate([
             'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
             'no_kp' => ['required', 'digits:12'], // Cara kedua menulis rules
-            'jantina' => ['required', 'in:lelaki,perempuan,tidak_diketahui'],
+            'jantina' => ['required'],
             'tarikh_lahir' => ['required'],
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);
 
         // Die and Dump
-        $data = $request->all();
+        // $data = $request->all();
         // $data = $request->input('nama_pesakit');
         // $data = $request->nama_pesakit;
         // $data = $request->except('nama_pesakit');
         // $data = $request->only(['nama_pesakit', 'no_kp']);
 
-        dd($data);
+        DB::table('pesakit')->insert($data);
+
+        return redirect('/pesakit')->with('mesej-berjaya', 'Rekod berjaya disimpan');
     }
 
     /**

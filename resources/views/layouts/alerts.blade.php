@@ -7,3 +7,10 @@
         </ul>
     </div>
 @endif
+
+{{-- Sekiranya ada session bernama mesej-berjaya, paparkan mesej tersebut --}}
+@if (session('mesej-berjaya'))
+<div class="alert alert-success">
+    {{ session('mesej-berjaya') }}
+</div>
+@endif

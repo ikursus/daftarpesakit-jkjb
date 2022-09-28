@@ -18,18 +18,20 @@ class PesakitController extends Controller
         $tarikhToday = date('d-m-Y');
         $number = 5;
         //
-        $senaraiPesakit = [
-            ['id' => 1, 'nama' => 'Ali Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 2, 'nama' => 'Ahmad Bin Abu', 'nokp' => '7070707070770'],
-            ['id' => 3, 'nama' => 'Jamal Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 4, 'nama' => 'Siti Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 5, 'nama' => 'Ah Leong Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 6, 'nama' => 'Sammy Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 7, 'nama' => 'John Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 8, 'nama' => 'Smith Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 9, 'nama' => 'Maria Bin Abu', 'nokp' => '808080808080'],
-            ['id' => 10, 'nama' => 'Ipin Bin Abu', 'nokp' => '808080808080'],
-        ];
+        // $senaraiPesakit = [
+        //     ['id' => 1, 'nama' => 'Ali Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 2, 'nama' => 'Ahmad Bin Abu', 'nokp' => '7070707070770'],
+        //     ['id' => 3, 'nama' => 'Jamal Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 4, 'nama' => 'Siti Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 5, 'nama' => 'Ah Leong Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 6, 'nama' => 'Sammy Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 7, 'nama' => 'John Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 8, 'nama' => 'Smith Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 9, 'nama' => 'Maria Bin Abu', 'nokp' => '808080808080'],
+        //     ['id' => 10, 'nama' => 'Ipin Bin Abu', 'nokp' => '808080808080'],
+        // ];
+        //$senaraiPesakit = DB::table('pesakit')->get();
+        $senaraiPesakit = DB::table('pesakit')->paginate(2);
 
         //return view('pesakit.template-index');
         // Cara 1 Pass Data Kepada Template

@@ -23,24 +23,33 @@
                             <th scope="col">ID</th>
                             <th scope="col">NAMA</th>
                             <th scope="col">NO KP</th>
+                            <th scope="col">JANTINA</th>
+                            <th scope="col">TARIKH LAHIR</th>
+                            <th scope="col">ALAMAT</th>
+                            <th scope="col">TINDAKAN</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($senaraiPesakit as $pesakit)
                             <tr>
-                            <td>{{ $pesakit['id'] }}</td>
-                            <td>{{ $pesakit['nama'] }}</td>
-                            <td>{{ $pesakit['nokp'] }}</td>
+                            <td>{{ $pesakit->id }}</td>
+                            <td>{{ $pesakit->nama_pesakit }}</td>
+                            <td>{{ $pesakit->no_kp }}</td>
+                            <td>{{ $pesakit->jantina }}</td>
+                            <td>{{ $pesakit->tarikh_lahir }}</td>
+                            <td>{{ $pesakit->alamat }}</td>
                             <td>
-                                <a class="btn btn-primary" href="/pesakit/{{ $pesakit['id'] }}">SHOW</a>
-                                <a class="btn btn-info" href="/pesakit/{{ $pesakit['id'] }}/edit">EDIT</a>
-                                <a class="btn btn-danger" href="/pesakit/{{ $pesakit['id'] }}/delete">DELETE</a>
+                                <a class="btn btn-primary" href="/pesakit/{{ $pesakit->id }}">SHOW</a>
+                                <a class="btn btn-info" href="/pesakit/{{ $pesakit->id }}/edit">EDIT</a>
+                                <a class="btn btn-danger" href="/pesakit/{{ $pesakit->id }}/delete">DELETE</a>
                             </td>
                             </tr>
                             @endforeach
                         </tbody>
                         </table>
                     </div>
+
+                    {{ $senaraiPesakit->links() }}
 
                 </div>
             </div>

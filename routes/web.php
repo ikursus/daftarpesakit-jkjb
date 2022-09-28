@@ -28,7 +28,7 @@ Route::post('pesakit/daftar', [PesakitController::class, 'store']);
 Route::get('pesakit/{id}', [PesakitController::class, 'show']);
 Route::get('pesakit/{id}/edit', [PesakitController::class, 'edit']);
 Route::patch('pesakit/{id}/edit', [PesakitController::class, 'update']);
-Route::get('pesakit/{id}/delete', [PesakitController::class, 'destroy']);
+Route::delete('pesakit/{id}/delete', [PesakitController::class, 'destroy']);
 
 // Kalau nak guna Route::resource, kena pastikan semua method dalam controller
 // turut menggunakan method resource iaitu (index, create, store, show, edit, update, destroy)

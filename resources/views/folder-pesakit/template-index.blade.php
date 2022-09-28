@@ -41,7 +41,36 @@
                             <td>
                                 <a class="btn btn-primary" href="/pesakit/{{ $pesakit->id }}">SHOW</a>
                                 <a class="btn btn-info" href="/pesakit/{{ $pesakit->id }}/edit">EDIT</a>
-                                <a class="btn btn-danger" href="/pesakit/{{ $pesakit->id }}/delete">DELETE</a>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $pesakit->id }}">
+                                    DELETE
+                                </button>
+
+                                <!-- Modal -->
+                                <form method="POST" action="/pesakit/{{$pesakit->id}}/delete">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="modal fade" id="modal-delete-{{ $pesakit->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRMATION DELETE</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            Adakah anda ingin menghapuskan rekod {{ $pesakit->nama_pesakit }} ?
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">YES</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </td>
                             </tr>
                             @endforeach

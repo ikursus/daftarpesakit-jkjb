@@ -171,6 +171,8 @@ class PesakitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('pesakit')->where('id', $id)->delete();
+
+        return redirect('/pesakit')->with('mesej-berjaya', 'Rekod berjaya dihapuskan');
     }
 }

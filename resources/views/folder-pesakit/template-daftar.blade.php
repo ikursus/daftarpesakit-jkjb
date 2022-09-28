@@ -42,11 +42,11 @@
 
                         <div class="form-group">
                           <label for="jantina">JANTINA</label>
-                          <select class="form-control" name="jantina">
+                          <select class="form-control" name="jantina_id">
                             <option value="">--SILA PILIH --</option>
 
                             @foreach ($senaraiJantina as $jantina)
-                                <option value="{{ $jantina->label }}" {{ old('jantina') == $jantina->label ? 'selected="selected"' : NULL }}>{{ $jantina->label }}</option>
+                                <option value="{{ $jantina->id }}" {{ old('jantina_id') == $jantina->id ? 'selected="selected"' : NULL }}>{{ $jantina->label }}</option>
                             @endforeach
 
                           </select>

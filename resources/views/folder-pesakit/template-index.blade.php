@@ -35,7 +35,7 @@
                             <td>{{ $pesakit->id }}</td>
                             <td>{{ $pesakit->nama_pesakit }}</td>
                             <td>{{ $pesakit->no_kp }}</td>
-                            <td>{{ $pesakit->jantina }}</td>
+                            <td>{{ $pesakit->jantina->label }}</td>
                             <td>{{ $pesakit->tarikh_lahir }}</td>
                             <td>{{ $pesakit->alamat }}</td>
                             <td>

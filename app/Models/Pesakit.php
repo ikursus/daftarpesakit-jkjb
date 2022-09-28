@@ -17,7 +17,7 @@ class Pesakit extends Model
         'nama_pesakit',
         'no_kp',
         'tarikh_lahir',
-        'jantina',
+        'jantina_id',
         'alamat'
     ];
 
@@ -26,5 +26,10 @@ class Pesakit extends Model
     public function getNamaPesakitAttribute($value)
     {
         return ucwords($value);
+    }
+
+    public function jantina()
+    {
+        return $this->belongsTo(Jantina::class, 'jantina_id');
     }
 }

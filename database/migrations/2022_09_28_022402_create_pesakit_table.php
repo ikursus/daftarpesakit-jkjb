@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('nama_pesakit');
             $table->string('no_kp');
             $table->date('tarikh_lahir')->nullable();
-            $table->string('jantina', 100);
+            // $table->string('jantina', 100);
+            $table->unsignedBigInteger('jantina_id')->nullable();
+            $table->foreign('jantina_id')->references('id')->on('jantina')->onDelete('set null');
             $table->text('alamat')->nullable();
             $table->timestamps(); // created_at & updated_at
         });

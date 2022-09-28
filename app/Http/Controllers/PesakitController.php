@@ -32,8 +32,11 @@ class PesakitController extends Controller
         //     ['id' => 10, 'nama' => 'Ipin Bin Abu', 'nokp' => '808080808080'],
         // ];
         //$senaraiPesakit = DB::table('pesakit')->get();
-        // $senaraiPesakit = DB::table('pesakit')->paginate(2);
-        $senaraiPesakit = Pesakit::paginate(2);
+        // $senaraiPesakit = DB::table('pesakit')
+        // ->join('jantina', 'pesakit.jantina_id', '=', 'jantina.id')
+        // ->select('pesakit.*', 'jantina.label')
+        // ->paginate(2);
+        $senaraiPesakit = Pesakit::with('jantina')->paginate(10);
 
         //return view('pesakit.template-index');
         // Cara 1 Pass Data Kepada Template
@@ -86,7 +89,7 @@ class PesakitController extends Controller
         $request->validate([
             'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
             'no_kp' => ['required', 'digits:12', 'unique:pesakit,no_kp'], // Cara kedua menulis rules
-            'jantina' => ['required'],
+            'jantina_id' => ['required', 'integer'],
             'tarikh_lahir' => ['required'],
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);
@@ -169,7 +172,7 @@ class PesakitController extends Controller
         $data = $request->validate([
             'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
             'no_kp' => ['required', 'digits:12', 'unique:pesakit,no_kp,' . $id], // Cara kedua menulis rules
-            'jantina' => ['required'],
+            'jantina_id' => ['required', 'integer'],
             'tarikh_lahir' => ['required'],
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);

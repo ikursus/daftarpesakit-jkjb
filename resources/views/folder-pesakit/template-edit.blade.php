@@ -28,7 +28,7 @@
                         @csrf
                         <div class="form-group">
                           <label for="exampleInputEmail1">NAMA PESAKIT</label>
-                          <input type="text" class="form-control" name="nama_pesakit" value="{{ $pesakit->nama_pesakit }}">
+                          <input type="text" class="form-control" name="nama_pesakit" value="{{ old('nama_pesakit') ?? $pesakit->nama_pesakit }}">
                           @error('nama_pesakit')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pesakit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,8 @@ class PesakitController extends Controller
         //     ['id' => 10, 'nama' => 'Ipin Bin Abu', 'nokp' => '808080808080'],
         // ];
         //$senaraiPesakit = DB::table('pesakit')->get();
-        $senaraiPesakit = DB::table('pesakit')->paginate(2);
+        // $senaraiPesakit = DB::table('pesakit')->paginate(2);
+        $senaraiPesakit = Pesakit::paginate(2);
 
         //return view('pesakit.template-index');
         // Cara 1 Pass Data Kepada Template
@@ -81,7 +83,7 @@ class PesakitController extends Controller
         // $data = $request->only(['nama_pesakit', 'no_kp']);
 
         // Kod asas untuk validation
-        $data = $request->validate([
+        $request->validate([
             'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
             'no_kp' => ['required', 'digits:12', 'unique:pesakit,no_kp'], // Cara kedua menulis rules
             'jantina' => ['required'],
@@ -89,8 +91,11 @@ class PesakitController extends Controller
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);
 
+        $data = $request->all();
+
         // Attach data untuk column created_at kepada variable $data diatas
-        $data['created_at'] = now(); // Carbon\Carbon::now();
+        // $data['created_at'] = now(); // Carbon\Carbon::now();
+        // Jika model, tak perlu masukkan data untuk created_at
 
         // Jika nama field tidak sama dengan nama column dalam table,
         // perlu kena declare nama field dan nama column yang berkaitan
@@ -102,7 +107,16 @@ class PesakitController extends Controller
         //     'tarikh_lahir' => $request->input('tarikh_lahir'),
         // ];
 
-        DB::table('pesakit')->insert($data);
+        // DB::table('pesakit')->insert($data);
+        // Cara 1 menyimpan data menggunakan model
+        // $pesakit = new Pesakit;
+        // $pesakit->nama_pesakit = $request->input('nama_pesakit');
+        // $pesakit->no_kp = $request->no_kp;
+        // $pesakit->jantina = $request->jantina;
+        // $pesakit->alamat = $request->alamat;
+        // $pesakit->tarikh_lahir = $request->tarikh_lahir;
+        // $pesakit->save();
+        Pesakit::create($data);
 
         return redirect('/pesakit')->with('mesej-berjaya', 'Rekod berjaya disimpan');
     }
@@ -115,8 +129,9 @@ class PesakitController extends Controller
      */
     public function show($id)
     {
-
-        $pesakit = DB::table('pesakit')->where('id', '=', $id)->first(); // LIMIT 1
+        // $pesakit = DB::table('pesakit')->where('id', '=', $id)->first(); // LIMIT 1
+        $pesakit = Pesakit::findOrFail($id); // LIMIT 1
+        // $pesakit = Pesakit::find($id); // LIMIT 1
 
         return view('folder-pesakit.template-show', compact('pesakit'));
     }
@@ -135,7 +150,8 @@ class PesakitController extends Controller
                             ->orderBy('label', 'asc')
                             ->get();
 
-        $pesakit = DB::table('pesakit')->where('id', '=', $id)->first(); // LIMIT 1
+        // $pesakit = DB::table('pesakit')->where('id', '=', $id)->first(); // LIMIT 1
+        $pesakit = Pesakit::findOrFail($id);
 
         return view('folder-pesakit.template-edit', compact('pesakit', 'senaraiJantina'));
     }
@@ -158,7 +174,9 @@ class PesakitController extends Controller
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);
 
-        DB::table('pesakit')->where('id', $id)->update($data);
+        // DB::table('pesakit')->where('id', $id)->update($data);
+        $pesakit = Pesakit::findOrFail($id);
+        $pesakit->update($data);
 
         return redirect()->back()->with('mesej-berjaya', 'Rekod berjaya dikemaskini');
     }
@@ -171,7 +189,9 @@ class PesakitController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('pesakit')->where('id', $id)->delete();
+        // DB::table('pesakit')->where('id', $id)->delete();
+        $pesakit = Pesakit::findOrFail($id);
+        $pesakit->delete();
 
         return redirect('/pesakit')->with('mesej-berjaya', 'Rekod berjaya dihapuskan');
     }

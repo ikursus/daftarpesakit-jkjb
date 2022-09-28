@@ -117,7 +117,10 @@ class PesakitController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $pesakit = DB::table('pesakit')->where('id', '=', $id)->first(); // LIMIT 1
+
+        return view('folder-pesakit.template-show', compact('pesakit'));
     }
 
     /**
@@ -128,7 +131,15 @@ class PesakitController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Dapatkan data jantina menerusi kaedah query builder
+        $senaraiJantina = DB::table('jantina')
+                            ->select('id', 'label')
+                            ->orderBy('label', 'asc')
+                            ->get();
+
+        $pesakit = DB::table('pesakit')->where('id', '=', $id)->first(); // LIMIT 1
+
+        return view('folder-pesakit.template-edit', compact('pesakit', 'senaraiJantina'));
     }
 
     /**

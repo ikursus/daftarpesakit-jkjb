@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PesakitController extends Controller
 {
@@ -53,7 +54,13 @@ class PesakitController extends Controller
      */
     public function create()
     {
-        return view('folder-pesakit.template-daftar');
+        // Dapatkan data jantina menerusi kaedah query builder
+        $senaraiJantina = DB::table('jantina')
+                            ->select('id', 'label')
+                            ->orderBy('label', 'asc')
+                            ->get();
+
+        return view('folder-pesakit.template-daftar', compact('senaraiJantina'));
     }
 
     /**

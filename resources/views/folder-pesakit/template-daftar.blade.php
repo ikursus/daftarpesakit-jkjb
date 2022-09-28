@@ -44,9 +44,11 @@
                           <label for="jantina">JANTINA</label>
                           <select class="form-control" name="jantina">
                             <option value="">--SILA PILIH --</option>
-                            <option value="lelaki">LELAKI</option>
-                            <option value="wanita">WANITA</option>
-                            <option value="tidak_diketahui">TIDAK DIKETAHUI</option>
+
+                            @foreach ($senaraiJantina as $jantina)
+                                <option value="{{ $jantina->label }}">{{ $jantina->label }}</option>
+                            @endforeach
+
                           </select>
                         </div>
 

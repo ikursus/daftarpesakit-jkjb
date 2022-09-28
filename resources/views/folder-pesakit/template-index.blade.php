@@ -36,6 +36,7 @@
                             <td>{{ $pesakit->nama_pesakit }}</td>
                             <td>{{ $pesakit->no_kp }}</td>
                             <td>{{ $pesakit->jantina->label }}</td>
+                            {{-- $pesakit->jantina->label (ini adalah proses untuk memanggil data label/nama jantina menerusi function relation dari model Pesakit) --}}
                             <td>{{ $pesakit->tarikh_lahir }}</td>
                             <td>{{ $pesakit->alamat }}</td>
                             <td>

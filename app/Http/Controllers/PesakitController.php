@@ -36,6 +36,7 @@ class PesakitController extends Controller
         // ->join('jantina', 'pesakit.jantina_id', '=', 'jantina.id')
         // ->select('pesakit.*', 'jantina.label')
         // ->paginate(2);
+
         $senaraiPesakit = Pesakit::with('jantina')->paginate(10);
 
         //return view('pesakit.template-index');

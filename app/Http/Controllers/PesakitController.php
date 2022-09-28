@@ -64,9 +64,13 @@ class PesakitController extends Controller
      */
     public function store(Request $request)
     {
+        // Kod asas untuk validation
         $request->validate([
-            'nama_pesakit' => 'required|min:3',
-            'no_kp' => ['required']
+            'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
+            'no_kp' => ['required', 'digits:12'], // Cara kedua menulis rules
+            'jantina' => ['required', 'in:lelaki,perempuan,tidak_diketahui'],
+            'tarikh_lahir' => ['required'],
+            'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
         ]);
 
         // Die and Dump

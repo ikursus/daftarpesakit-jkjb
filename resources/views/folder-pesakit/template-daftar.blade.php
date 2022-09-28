@@ -27,11 +27,17 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">NAMA PESAKIT</label>
                           <input type="text" class="form-control" name="nama_pesakit">
+                          @error('nama_pesakit')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                           <label for="no_kp">NO K/P</label>
                           <input type="text" class="form-control" name="no_kp">
+                          @error('no_kp')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">

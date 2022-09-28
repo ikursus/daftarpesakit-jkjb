@@ -73,8 +73,6 @@ class PesakitController extends Controller
      */
     public function store(Request $request)
     {
-
-
         // Die and Dump
         // $data = $request->all();
         // $data = $request->input('nama_pesakit');
@@ -85,7 +83,7 @@ class PesakitController extends Controller
         // Kod asas untuk validation
         $data = $request->validate([
             'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
-            'no_kp' => ['required', 'digits:12'], // Cara kedua menulis rules
+            'no_kp' => ['required', 'digits:12', 'unique:pesakit,no_kp'], // Cara kedua menulis rules
             'jantina' => ['required'],
             'tarikh_lahir' => ['required'],
             'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
@@ -151,7 +149,18 @@ class PesakitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Kod asas untuk validation
+        $data = $request->validate([
+            'nama_pesakit' => 'required|min:3|string', // Cara pertama menulis rules
+            'no_kp' => ['required', 'digits:12', 'unique:pesakit,no_kp,' . $id], // Cara kedua menulis rules
+            'jantina' => ['required'],
+            'tarikh_lahir' => ['required'],
+            'alamat' => ['sometimes', 'nullable'] // Untuk kes bagi field yang tak wajib
+        ]);
+
+        DB::table('pesakit')->where('id', $id)->update($data);
+
+        return redirect()->back()->with('mesej-berjaya', 'Rekod berjaya dikemaskini');
     }
 
     /**

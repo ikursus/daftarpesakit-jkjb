@@ -23,6 +23,8 @@
 
 
                     <form method="POST">
+                        <input type="hidden" name="_method" value="PATCH">
+                        @method('PATCH')
                         @csrf
                         <div class="form-group">
                           <label for="exampleInputEmail1">NAMA PESAKIT</label>
